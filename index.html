@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECUATRONIC - Centro de Capacitación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- PARTÍCULAS FLOTANTES -->
+  <div class="particulas" id="particulas"></div>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo-ring">
+      <img src="logo.png" alt="Logo Ecuatronic"
+           onerror="this.outerHTML='<div class=\'logo-fallback\'><svg viewBox=\'0 0 64 64\' fill=\'white\'><circle cx=\'32\' cy=\'32\' r=\'28\' fill=\'#1a3a8f\'/><text x=\'50%\' y=\'55%\' text-anchor=\'middle\' fill=\'white\' font-size=\'18\' font-weight=\'bold\' font-family=\'Rajdhani\'>EC</text></svg></div>'">
+    </div>
+    <p class="subtitulo">Centro de Capacitación</p>
+    <h1>ECUATRONIC</h1>
+    <div class="barra"></div>
+  </header>
+
+  <!-- NAVEGACIÓN -->
+  <nav>
+    <a href="#" class="nav-link activo" data-seccion="inicio">Inicio</a>
+    <a href="#" class="nav-link" data-seccion="clientes">Clientes</a>
+    <a href="#" class="nav-link" data-seccion="equipos">Equipos</a>
+    <a href="#" class="nav-link" data-seccion="estudiantes">Estudiantes</a>
+    <a href="#" class="nav-link" data-seccion="nosotros">Nosotros</a>
+  </nav>
+
+  <!-- ======================== SECCIÓN INICIO ======================== -->
+  <section id="sec-inicio" class="seccion activa">
+    <main>
+      <!-- TARJETA GALERÍA LOCAL -->
+      <div class="card-imagen">
+        <div class="img-area">
+          <img src="local1.jpg" alt="Local Ecuatronic"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="10" width="56" height="40" rx="4" stroke="#2563eb" stroke-width="2.5"/>
+              <circle cx="22" cy="26" r="6" stroke="#2563eb" stroke-width="2.5"/>
+              <path d="M4 42 L18 28 L30 38 L42 24 L60 42" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+            <span>NUESTRO LOCAL</span>
+          </div>
+        </div>
+        <div class="card-linea"></div>
+        <div class="card-info">
+          <div>
+            <div class="card-titulo">Nuestras Instalaciones</div>
+            <div class="card-subtitulo">Conoce nuestro centro de capacitación</div>
+          </div>
+          <button class="card-btn" onclick="navegarA('nosotros')">Ver más</button>
+        </div>
+      </div>
+
+      <!-- TARJETA CAPACITACIONES -->
+      <div class="card-imagen">
+        <div class="img-area">
+          <img src="local2.jpg" alt="Capacitaciones"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="10" width="56" height="40" rx="4" stroke="#2563eb" stroke-width="2.5"/>
+              <circle cx="22" cy="26" r="6" stroke="#2563eb" stroke-width="2.5"/>
+              <path d="M4 42 L18 32 L32 22 L46 30 L60 42" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+            <span>CAPACITACIONES</span>
+          </div>
+        </div>
+        <div class="card-linea"></div>
+        <div class="card-info">
+          <div>
+            <div class="card-titulo">Programas y Cursos</div>
+            <div class="card-subtitulo">Inscríbete en nuestros programas</div>
+          </div>
+          <button class="card-btn" onclick="navegarA('estudiantes')">Ver más</button>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ======================== SECCIÓN CLIENTES ======================== -->
+  <section id="sec-clientes" class="seccion">
+    <div class="seccion-contenido">
+      <div class="seccion-header">
+        <h2 class="seccion-titulo">Registro de Clientes</h2>
+        <p class="seccion-desc">Ingresa los datos del cliente y los detalles de la reparación</p>
+        <button class="btn-nuevo" onclick="abrirModal('modal-cliente')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nuevo Cliente
+        </button>
+      </div>
+
+      <!-- TABLA CLIENTES -->
+      <div class="tabla-wrapper">
+        <table class="tabla" id="tabla-clientes">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Cédula</th>
+              <th>Teléfono</th>
+              <th>Equipo</th>
+              <th>Problema</th>
+              <th>Precio</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-clientes">
+            <tr class="fila-vacia">
+              <td colspan="9">No hay clientes registrados aún.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SECCIÓN EQUIPOS ======================== -->
+  <section id="sec-equipos" class="seccion">
+    <div class="seccion-contenido">
+      <div class="seccion-header">
+        <h2 class="seccion-titulo">Gestión de Equipos</h2>
+        <p class="seccion-desc">Características, estado y propietario de cada equipo</p>
+        <button class="btn-nuevo" onclick="abrirModal('modal-equipo')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nuevo Equipo
+        </button>
+      </div>
+
+      <!-- TABLA EQUIPOS -->
+      <div class="tabla-wrapper">
+        <table class="tabla" id="tabla-equipos">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tipo</th>
+              <th>Marca / Modelo</th>
+              <th>Serie</th>
+              <th>Propietario</th>
+              <th>Problema</th>
+              <th>Costo</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-equipos">
+            <tr class="fila-vacia">
+              <td colspan="9">No hay equipos registrados aún.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SECCIÓN ESTUDIANTES ======================== -->
+  <section id="sec-estudiantes" class="seccion">
+    <div class="seccion-contenido">
+      <div class="seccion-header">
+        <h2 class="seccion-titulo">Registro de Estudiantes</h2>
+        <p class="seccion-desc">Datos personales, horario y período de capacitación</p>
+        <button class="btn-nuevo" onclick="abrirModal('modal-estudiante')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nuevo Estudiante
+        </button>
+      </div>
+
+      <!-- TABLA ESTUDIANTES -->
+      <div class="tabla-wrapper">
+        <table class="tabla" id="tabla-estudiantes">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Cédula</th>
+              <th>Teléfono</th>
+              <th>Curso</th>
+              <th>Horario</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-estudiantes">
+            <tr class="fila-vacia">
+              <td colspan="9">No hay estudiantes registrados aún.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SECCIÓN NOSOTROS ======================== -->
+  <section id="sec-nosotros" class="seccion">
+    <div class="seccion-contenido">
+      <div class="seccion-header">
+        <h2 class="seccion-titulo">Nuestro Local</h2>
+        <p class="seccion-desc">Conoce nuestras instalaciones y equipo de trabajo</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="local1.jpg" alt="Local 1" onerror="this.parentElement.classList.add('placeholder-galeria')">
+          <div class="galeria-overlay"><span>Área de Recepción</span></div>
+        </div>
+        <div class="galeria-item">
+          <img src="local2.jpg" alt="Local 2" onerror="this.parentElement.classList.add('placeholder-galeria')">
+          <div class="galeria-overlay"><span>Taller Técnico</span></div>
+        </div>
+        <div class="galeria-item">
+          <img src="local3.jpg" alt="Local 3" onerror="this.parentElement.classList.add('placeholder-galeria')">
+          <div class="galeria-overlay"><span>Aula de Capacitación</span></div>
+        </div>
+        <div class="galeria-item">
+          <img src="local4.jpg" alt="Local 4" onerror="this.parentElement.classList.add('placeholder-galeria')">
+          <div class="galeria-overlay"><span>Laboratorio</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODAL CLIENTE ==================== -->
+  <div class="modal-overlay" id="modal-cliente">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-titulo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Nuevo Cliente
+        </h3>
+        <button class="modal-cerrar" onclick="cerrarModal('modal-cliente')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-cliente" onsubmit="guardarCliente(event)">
+
+          <div class="form-grupo-titulo">Datos Personales</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Nombre completo *</label>
+              <input type="text" id="c-nombre" placeholder="Ej: Juan Pérez" required>
+            </div>
+            <div class="form-grupo">
+              <label>Cédula / RUC *</label>
+              <input type="text" id="c-cedula" placeholder="0912345678" required>
+            </div>
+          </div>
+
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Teléfono *</label>
+              <input type="tel" id="c-telefono" placeholder="0987654321" required>
+            </div>
+            <div class="form-grupo">
+              <label>Correo electrónico</label>
+              <input type="email" id="c-email" placeholder="cliente@email.com">
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Dirección</label>
+            <input type="text" id="c-direccion" placeholder="Ciudad, calle, número...">
+          </div>
+
+          <div class="form-grupo-titulo">Detalles del Equipo a Reparar</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Tipo de equipo *</label>
+              <select id="c-tipo-equipo" required>
+                <option value="">Seleccionar...</option>
+                <option>Computadora de escritorio</option>
+                <option>Laptop</option>
+                <option>Impresora</option>
+                <option>Tablet</option>
+                <option>Celular</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-grupo">
+              <label>Marca / Modelo</label>
+              <input type="text" id="c-marca" placeholder="Ej: HP Pavilion 15">
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Descripción del problema *</label>
+            <textarea id="c-problema" rows="3" placeholder="Describe el problema que presenta el equipo..." required></textarea>
+          </div>
+
+          <div class="form-grupo-titulo">Presupuesto</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Precio estimado ($) *</label>
+              <input type="number" id="c-precio" placeholder="0.00" min="0" step="0.01" required>
+            </div>
+            <div class="form-grupo">
+              <label>Estado</label>
+              <select id="c-estado">
+                <option value="Pendiente">Pendiente</option>
+                <option value="En revisión">En revisión</option>
+                <option value="En reparación">En reparación</option>
+                <option value="Listo">Listo</option>
+                <option value="Entregado">Entregado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Observaciones adicionales</label>
+            <textarea id="c-observaciones" rows="2" placeholder="Notas internas, accesorios entregados, etc."></textarea>
+          </div>
+
+          <div class="modal-acciones">
+            <button type="button" class="btn-cancelar" onclick="cerrarModal('modal-cliente')">Cancelar</button>
+            <button type="submit" class="btn-guardar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Guardar Cliente
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL EQUIPO ==================== -->
+  <div class="modal-overlay" id="modal-equipo">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-titulo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Registro de Equipo
+        </h3>
+        <button class="modal-cerrar" onclick="cerrarModal('modal-equipo')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-equipo" onsubmit="guardarEquipo(event)">
+
+          <div class="form-grupo-titulo">Características del Equipo</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Tipo de equipo *</label>
+              <select id="e-tipo" required>
+                <option value="">Seleccionar...</option>
+                <option>Computadora de escritorio</option>
+                <option>Laptop</option>
+                <option>Impresora</option>
+                <option>Tablet</option>
+                <option>Celular</option>
+                <option>Monitor</option>
+                <option>Servidor</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-grupo">
+              <label>Marca *</label>
+              <input type="text" id="e-marca" placeholder="Ej: HP, Dell, Lenovo..." required>
+            </div>
+          </div>
+
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Modelo *</label>
+              <input type="text" id="e-modelo" placeholder="Ej: Pavilion 15-eg2xxx" required>
+            </div>
+            <div class="form-grupo">
+              <label>Número de serie</label>
+              <input type="text" id="e-serie" placeholder="SN: XXXXXXXX">
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Especificaciones técnicas</label>
+            <textarea id="e-specs" rows="3" placeholder="Procesador, RAM, almacenamiento, sistema operativo, etc."></textarea>
+          </div>
+
+          <div class="form-grupo-titulo">Propietario del Equipo</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Nombre del propietario *</label>
+              <input type="text" id="e-propietario" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-grupo">
+              <label>Teléfono de contacto *</label>
+              <input type="tel" id="e-telefono" placeholder="0987654321" required>
+            </div>
+          </div>
+
+          <div class="form-grupo-titulo">Diagnóstico y Costo</div>
+          <div class="form-grupo">
+            <label>Problema detectado *</label>
+            <textarea id="e-problema" rows="3" placeholder="Describe el problema o falla del equipo..." required></textarea>
+          </div>
+
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Costo de reparación ($) *</label>
+              <input type="number" id="e-costo" placeholder="0.00" min="0" step="0.01" required>
+            </div>
+            <div class="form-grupo">
+              <label>Estado del equipo</label>
+              <select id="e-estado">
+                <option value="Ingresado">Ingresado</option>
+                <option value="Diagnosticado">Diagnosticado</option>
+                <option value="En reparación">En reparación</option>
+                <option value="Reparado">Reparado</option>
+                <option value="Entregado">Entregado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Observaciones</label>
+            <textarea id="e-observaciones" rows="2" placeholder="Accesorios entregados, daños estéticos, garantía, etc."></textarea>
+          </div>
+
+          <div class="modal-acciones">
+            <button type="button" class="btn-cancelar" onclick="cerrarModal('modal-equipo')">Cancelar</button>
+            <button type="submit" class="btn-guardar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Guardar Equipo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL ESTUDIANTE ==================== -->
+  <div class="modal-overlay" id="modal-estudiante">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-titulo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Nuevo Estudiante
+        </h3>
+        <button class="modal-cerrar" onclick="cerrarModal('modal-estudiante')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-estudiante" onsubmit="guardarEstudiante(event)">
+
+          <div class="form-grupo-titulo">Datos Personales</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Nombre completo *</label>
+              <input type="text" id="s-nombre" placeholder="Ej: María García" required>
+            </div>
+            <div class="form-grupo">
+              <label>Cédula *</label>
+              <input type="text" id="s-cedula" placeholder="0912345678" required>
+            </div>
+          </div>
+
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Teléfono *</label>
+              <input type="tel" id="s-telefono" placeholder="0987654321" required>
+            </div>
+            <div class="form-grupo">
+              <label>Correo electrónico</label>
+              <input type="email" id="s-email" placeholder="estudiante@email.com">
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Dirección</label>
+            <input type="text" id="s-direccion" placeholder="Ciudad, sector...">
+          </div>
+
+          <div class="form-grupo-titulo">Información del Curso</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Curso / Capacitación *</label>
+              <select id="s-curso" required>
+                <option value="">Seleccionar...</option>
+                <option>Mantenimiento de PC</option>
+                <option>Reparación de Laptops</option>
+                <option>Electrónica Básica</option>
+                <option>Reparación de Celulares</option>
+                <option>Redes e Internet</option>
+                <option>Office e Informática</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-grupo">
+              <label>Nivel</label>
+              <select id="s-nivel">
+                <option>Básico</option>
+                <option>Intermedio</option>
+                <option>Avanzado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grupo-titulo">Horario y Período</div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Días de clase *</label>
+              <select id="s-dias" required>
+                <option value="">Seleccionar...</option>
+                <option>Lunes y Miércoles</option>
+                <option>Martes y Jueves</option>
+                <option>Lunes, Miércoles y Viernes</option>
+                <option>Martes, Jueves y Sábado</option>
+                <option>Sábados</option>
+                <option>Lunes a Viernes</option>
+              </select>
+            </div>
+            <div class="form-grupo">
+              <label>Horario *</label>
+              <select id="s-horario" required>
+                <option value="">Seleccionar...</option>
+                <option>07:00 – 09:00</option>
+                <option>09:00 – 11:00</option>
+                <option>11:00 – 13:00</option>
+                <option>14:00 – 16:00</option>
+                <option>16:00 – 18:00</option>
+                <option>18:00 – 20:00</option>
+                <option>20:00 – 22:00</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label>Fecha de inicio *</label>
+              <input type="date" id="s-fecha-inicio" required>
+            </div>
+            <div class="form-grupo">
+              <label>Fecha de fin *</label>
+              <input type="date" id="s-fecha-fin" required>
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label>Observaciones</label>
+            <textarea id="s-observaciones" rows="2" placeholder="Notas adicionales sobre el estudiante..."></textarea>
+          </div>
+
+          <div class="modal-acciones">
+            <button type="button" class="btn-cancelar" onclick="cerrarModal('modal-estudiante')">Cancelar</button>
+            <button type="submit" class="btn-guardar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Guardar Estudiante
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    &copy; 2026 <span>ECUATRONIC</span> — Centro de Capacitación. Todos los derechos reservados.
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // =========== PARTÍCULAS ===========
+    const contenedor = document.getElementById('particulas');
+    const colores = ['#2563eb', '#1a3a8f', '#f59e0b', '#93c5fd'];
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particula');
+      const tam = Math.random() * 8 + 4;
+      p.style.width  = tam + 'px';
+      p.style.height = tam + 'px';
+      p.style.left   = Math.random() * 100 + 'vw';
+      p.style.background = colores[Math.floor(Math.random() * colores.length)];
+      p.style.animationDuration  = (Math.random() * 12 + 8) + 's';
+      p.style.animationDelay     = (Math.random() * 10) + 's';
+      contenedor.appendChild(p);
+    }
+
+    // =========== NAVEGACIÓN ===========
+    const navLinks = document.querySelectorAll('.nav-link');
+    const secciones = document.querySelectorAll('.seccion');
+
+    function navegarA(id) {
+      navLinks.forEach(l => l.classList.remove('activo'));
+      secciones.forEach(s => s.classList.remove('activa'));
+      const link = document.querySelector(`[data-seccion="${id}"]`);
+      const sec  = document.getElementById(`sec-${id}`);
+      if (link) link.classList.add('activo');
+      if (sec)  sec.classList.add('activa');
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        navegarA(link.dataset.seccion);
+      });
+    });
+
+    // =========== MODALES ===========
+    function abrirModal(id) {
+      document.getElementById(id).classList.add('activo');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).classList.remove('activo');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) cerrarModal(overlay.id);
+      });
+    });
+
+    // =========== DATOS EN MEMORIA (temporal hasta conectar MySQL) ===========
+    let clientes    = [];
+    let equipos     = [];
+    let estudiantes = [];
+
+    // =========== GUARDAR CLIENTE ===========
+    function guardarCliente(e) {
+      e.preventDefault();
+      const cliente = {
+        id:           clientes.length + 1,
+        nombre:       document.getElementById('c-nombre').value,
+        cedula:       document.getElementById('c-cedula').value,
+        telefono:     document.getElementById('c-telefono').value,
+        email:        document.getElementById('c-email').value,
+        direccion:    document.getElementById('c-direccion').value,
+        tipoEquipo:   document.getElementById('c-tipo-equipo').value,
+        marca:        document.getElementById('c-marca').value,
+        problema:     document.getElementById('c-problema').value,
+        precio:       parseFloat(document.getElementById('c-precio').value).toFixed(2),
+        estado:       document.getElementById('c-estado').value,
+        observaciones: document.getElementById('c-observaciones').value,
+      };
+      clientes.push(cliente);
+      renderTablaClientes();
+      e.target.reset();
+      cerrarModal('modal-cliente');
+    }
+
+    function renderTablaClientes() {
+      const tbody = document.getElementById('tbody-clientes');
+      if (clientes.length === 0) {
+        tbody.innerHTML = '<tr class="fila-vacia"><td colspan="9">No hay clientes registrados aún.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = clientes.map((c, i) => `
+        <tr class="fila-entrada">
+          <td>${c.id}</td>
+          <td><strong>${c.nombre}</strong></td>
+          <td>${c.cedula}</td>
+          <td>${c.telefono}</td>
+          <td>${c.tipoEquipo} ${c.marca ? '– ' + c.marca : ''}</td>
+          <td class="celda-truncar">${c.problema}</td>
+          <td><span class="badge-precio">$${c.precio}</span></td>
+          <td><span class="badge-estado estado-${c.estado.replace(/\s/g,'-').toLowerCase()}">${c.estado}</span></td>
+          <td>
+            <button class="btn-accion btn-eliminar" onclick="eliminar('clientes',${i})">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // =========== GUARDAR EQUIPO ===========
+    function guardarEquipo(e) {
+      e.preventDefault();
+      const equipo = {
+        id:          equipos.length + 1,
+        tipo:        document.getElementById('e-tipo').value,
+        marca:       document.getElementById('e-marca').value,
+        modelo:      document.getElementById('e-modelo').value,
+        serie:       document.getElementById('e-serie').value,
+        specs:       document.getElementById('e-specs').value,
+        propietario: document.getElementById('e-propietario').value,
+        telefono:    document.getElementById('e-telefono').value,
+        problema:    document.getElementById('e-problema').value,
+        costo:       parseFloat(document.getElementById('e-costo').value).toFixed(2),
+        estado:      document.getElementById('e-estado').value,
+        observaciones: document.getElementById('e-observaciones').value,
+      };
+      equipos.push(equipo);
+      renderTablaEquipos();
+      e.target.reset();
+      cerrarModal('modal-equipo');
+    }
+
+    function renderTablaEquipos() {
+      const tbody = document.getElementById('tbody-equipos');
+      if (equipos.length === 0) {
+        tbody.innerHTML = '<tr class="fila-vacia"><td colspan="9">No hay equipos registrados aún.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = equipos.map((eq, i) => `
+        <tr class="fila-entrada">
+          <td>${eq.id}</td>
+          <td>${eq.tipo}</td>
+          <td><strong>${eq.marca}</strong> ${eq.modelo}</td>
+          <td>${eq.serie || '—'}</td>
+          <td>${eq.propietario}</td>
+          <td class="celda-truncar">${eq.problema}</td>
+          <td><span class="badge-precio">$${eq.costo}</span></td>
+          <td><span class="badge-estado estado-${eq.estado.replace(/\s/g,'-').toLowerCase()}">${eq.estado}</span></td>
+          <td>
+            <button class="btn-accion btn-eliminar" onclick="eliminar('equipos',${i})">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // =========== GUARDAR ESTUDIANTE ===========
+    function guardarEstudiante(e) {
+      e.preventDefault();
+      const est = {
+        id:          estudiantes.length + 1,
+        nombre:      document.getElementById('s-nombre').value,
+        cedula:      document.getElementById('s-cedula').value,
+        telefono:    document.getElementById('s-telefono').value,
+        email:       document.getElementById('s-email').value,
+        direccion:   document.getElementById('s-direccion').value,
+        curso:       document.getElementById('s-curso').value,
+        nivel:       document.getElementById('s-nivel').value,
+        dias:        document.getElementById('s-dias').value,
+        horario:     document.getElementById('s-horario').value,
+        fechaInicio: document.getElementById('s-fecha-inicio').value,
+        fechaFin:    document.getElementById('s-fecha-fin').value,
+        observaciones: document.getElementById('s-observaciones').value,
+      };
+      estudiantes.push(est);
+      renderTablaEstudiantes();
+      e.target.reset();
+      cerrarModal('modal-estudiante');
+    }
+
+    function renderTablaEstudiantes() {
+      const tbody = document.getElementById('tbody-estudiantes');
+      if (estudiantes.length === 0) {
+        tbody.innerHTML = '<tr class="fila-vacia"><td colspan="9">No hay estudiantes registrados aún.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = estudiantes.map((s, i) => `
+        <tr class="fila-entrada">
+          <td>${s.id}</td>
+          <td><strong>${s.nombre}</strong></td>
+          <td>${s.cedula}</td>
+          <td>${s.telefono}</td>
+          <td>${s.curso} <small>(${s.nivel})</small></td>
+          <td>${s.dias}<br><small>${s.horario}</small></td>
+          <td>${formatFecha(s.fechaInicio)}</td>
+          <td>${formatFecha(s.fechaFin)}</td>
+          <td>
+            <button class="btn-accion btn-eliminar" onclick="eliminar('estudiantes',${i})">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function formatFecha(f) {
+      if (!f) return '—';
+      const [y, m, d] = f.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function eliminar(tipo, idx) {
+      if (!confirm('¿Eliminar este registro?')) return;
+      if (tipo === 'clientes')    { clientes.splice(idx, 1);    renderTablaClientes(); }
+      if (tipo === 'equipos')     { equipos.splice(idx, 1);     renderTablaEquipos(); }
+      if (tipo === 'estudiantes') { estudiantes.splice(idx, 1); renderTablaEstudiantes(); }
+    }
+  </script>
+
+</body>
+</html>
